@@ -17,8 +17,13 @@
     href="https://fonts.googleapis.com/css2?family=Commissioner:wght@200&family=PT+Serif:ital@1&family=Roboto+Condensed&display=swap"
     rel="stylesheet">
 
+  <!-- Icono del head -->
+  <link rel="icon" href="https://i.postimg.cc/PJwRr3CC/logo.jpg" type="image/png">
+
+  <!-- Título de la página -->
   <title>PlantillaBoostrap</title>
 
+  <!-- CSS adicional -->
   <style>
     .valoracion-container {
       display: flex;
@@ -82,38 +87,40 @@
 
   <!-- HEADER NAVBAR -->
   <header class="p-3 bg-dark text-white">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <img src="images/logo.jpeg" alt="" width="45" height="40" class="me-2">
-        </a>
+    <nav>
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+            <img src="images/logo.jpeg" alt="" width="45" height="40" class="me-2">
+          </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Cursos</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">Precios</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-        </ul>
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+            <li><a href="#" class="nav-link px-2 text-white">Cursos</a></li>
+            <li><a href="#" class="nav-link px-2 text-white">Precios</a></li>
+            <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+            <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+          </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control form-control-dark" placeholder="Buscar palabras claves..."
-            aria-label="Search">
-        </form>
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+            <input type="search" class="form-control form-control-dark" placeholder="Buscar palabras claves..."
+              aria-label="Search">
+          </form>
 
-        <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Acceso usuario</button>
-          <button type="button" class="btn btn-warning">Acceso administrador</button>
+          <div class="text-end">
+            <button type="button" class="btn btn-outline-light me-2">Acceso usuario</button>
+            <button type="button" class="btn btn-warning">Acceso admin</button>
+          </div>
         </div>
       </div>
-    </div>
+    </nav>
   </header>
 
   <!-- Separación --> </br>
 
   <!-- PARTE QUE OFRECEMOS -->
   <div class="container-fluid">
-    <div class="container px-4 py-5" id="featured-3">
+    <div class="container px-4 py-5">
       <h2 class="pb-2 border-bottom">¿Que ofrecemos?</h2>
       <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
         <div class="feature col">
@@ -161,15 +168,17 @@
   <div class="container">
     <div class="container-fluid diagonal-container">
       <div class="row">
+        <!-- animate__animated animate__fadeInUp añade una animación de fadeIn, animate_delay-1s le da un retardo de 1 segundos -->
         <div class="col-md-6 text-container animate__animated animate__fadeIn animate__delay-1s">
-          <!-- La clase 'animate__animated animate__fadeIn' añade una animación de fadeIn al cargar -->
           <h2 class="animate__animated animate__bounce">GRANDES EXPERTOS EN CAMBRIDGE</h2>
           <hr class="my-4 colorHr">
+          <!-- animate__animated animate__fadeInUp añade una animación de fadeIn hacia arriba-->
           <p class="animate__animated animate__fadeInUp">Gracias a un meticuloso proceso de selección, hemos estado
             proporcionando clases de <span class="fw-bold">inglés en línea</span> durante
             casi una década, colaborando con los mejores <span class="fw-bold">profesores nativos y bilingües.</span>
           </p>
 
+          <!-- animate__animated animate__fadeInUp añade una animación de fadeIn hacia arriba, animate_delay-1s le da un retardo de 1 segundos -->
           <p class="animate__animated animate__fadeInUp animate__delay-1s">Nuestros instructores poseen la habilidad de
             estructurar el
             curso de manera precisa, ofreciendo
@@ -178,15 +187,17 @@
             que también te brindarán la motivación necesaria para estudiar, guiándote por el camino más directo hacia la
             consecución de tu objetivo de aprender inglés o aprobar los exámenes de Cambridge.</p>
 
+          <!-- animate__animated animate__fadeInUp añade una animación de fadeIn hacia arriba, animate_delay-1s le da un retardo de 1 segundos -->
           <p class="animate__animated animate__fadeInUp animate__delay-1s">En nuestra academia, nos enorgullece crear un
             <span class="fw-bold">entorno de
               aprendizaje estimulante y efectivo</span>, donde cada
             estudiante encuentra el apoyo necesario para alcanzar el dominio del idioma inglés con confianza y éxito.
           </p>
         </div>
+        <!-- animate__animated animate__fadeInRight añade una animación de fadeIn desde la derecha, animate__delay1-s le da un retado de 1 segundo -->
         <div class="col-md-6 image-container animate__animated animate__fadeInRight animate__delay-1s">
           <!-- La clase 'animate__animated animate__fadeInRight' añade una animación de fadeIn desde la derecha al cargar -->
-          <img src="images/profIngles.jpg" alt="Imagen de la academia" class="img-fluid h-75 mx-auto d-block">
+          <img src="images/profIngles.jpg" alt="Profesor de inglés" class="img-fluid h-75 mx-auto d-block">
         </div>
       </div>
     </div>
@@ -197,14 +208,15 @@
   <div class="container">
     <div class="container-fluid diagonal-container">
       <div class="row">
+        <!-- animate__animated animate__fadeInLeft añade una animación de fadeIn desde la izquierda, animate_delay-2s le da un retardo de 2 segundos -->
         <div class="col-md-6 image-container animate__animated animate__fadeInLeft animate__delay-2s">
-          <!-- La clase 'animate__animated animate__fadeInRight' añade una animación de fadeIn desde la derecha al cargar -->
-          <img src="images/inglesVideo.jpeg" alt="Imagen de la academia" class="img-fluid h-75 mx-auto d-block">
+          <img src="images/inglesVideo.jpeg" alt="Imagen video inglés" class="img-fluid h-75 mx-auto d-block">
         </div>
+        <!-- animate__animated animate__fadeI añade una animación de fadeIn, animate_delay-2s le da un retardo de 2 segundos -->
         <div class="col-md-6 text-container animate__animated animate__fadeIn animate__delay-2s">
-          <!-- La clase 'animate__animated animate__fadeIn' añade una animación de fadeIn al cargar -->
-          <h2 class="animate__animated animate__bounce">APRENDE CON LECCIONES DE VIDEO ONLINE</h2>
+          <h2 class="animate__animated">APRENDE CON LECCIONES DE VIDEO ONLINE</h2>
           <hr class="my-4 colorHr">
+          <!-- animate__animated animate__fadeInUp añade una animación de fadeIn hacia arriba, animate_delay-2s le da un retardo de 2 segundos -->
           <p class="animate__animated animate__fadeInUp">Descubre nuestro innovador enfoque educativo con cursos de
             inglés en línea. <span class="fw-bold">Con 91 lecciones en video</span>, impartidas por un examinador
             oficial de Cambridge, te sumergirás
@@ -212,12 +224,14 @@
             .</span>
           </p>
 
+          <!-- animate__animated animate__fadeInUp añade una animación de fadeIn hacia arriba, animate_delay-2s le da un retardo de 2 segundos -->
           <p class="animate__animated animate__fadeInUp animate__delay-2s">
             Explora <span class="fw-bold">48 videos que abordan errores comunes en el habla inglesa</span>,
             proporcionando valiosas correcciones y
             orientación. Además, obtén una comprensión profunda de los criterios de evaluación para Speaking y Writing
             en 7 videos especializados.</p>
 
+          <!-- animate__animated animate__fadeInUp añade una animación de fadeIn hacia arriba, animate_delay-2s le da un retardo de 2 segundos -->
           <p class="animate__animated animate__fadeInUp animate__delay-2s">Aumenta tu dominio gramatical con <span
               class="fw-bold">24 videos
               dedicados a las áreas más desafiantes, y perfecciona la pronunciación con 12 videos enfocados en los
@@ -236,10 +250,12 @@
   <div class="container">
     <div class="container-fluid diagonal-container">
       <div class="row">
+        <!-- animate__animated animate__fadeIn añade una animación de fadeIn -->
         <div class="col-md-6 text-container animate__animated animate__fadeIn animate__delay-3s">
-          <!-- La clase 'animate__animated animate__fadeIn' añade una animación de fadeIn al cargar -->
-          <h2 class="animate__animated animate__bounce">PRÁCTICA CON NUESTROS EXÁMENES</h2>
+          <!--  -->
+          <h2 class="animate__animated">PRÁCTICA CON NUESTROS EXÁMENES</h2>
           <hr class="my-4 colorHr">
+          <!-- animate__animated animate__fadeInUp añade una animación de fadeIn hacia arriba-->
           <p class="animate__animated animate__fadeInUp">Explora nuestro curso de inglés Cambridge en línea y sumérgete
             en una preparación completa. <span class="fw-bold">Con acceso a 20 exámenes que replican fielmente el
               formato oficial (Reading,
@@ -247,6 +263,7 @@
             lingüística.
           </p>
 
+          <!-- animate__animated animate__fadeInUp añade una animación de fadeIn hacia arriba, animate_delay-3s le da un retardo de 3 segundos -->
           <p class="animate__animated animate__fadeInUp animate__delay-3s">Amplía tus conocimientos con <span
               class="fw-bold">más de 350
               ejercicios de gramática y vocabulario</span>, que incluyen explicaciones detalladas y desafíos específicos
@@ -254,6 +271,7 @@
             Common Mistakes, Spelling, Sentence Transformation, Word Formation, Sentence Construction, Sentence
             Completion, y muchos más.</p>
 
+          <!-- animate__animated animate__fadeInUp añade una animación de fadeIn hacia arriba, animate_delay-3s le da un retardo de 3 segundos -->
           <p class="animate__animated animate__fadeInUp animate__delay-3s">Además, <span class="fw-bold">vive la
               experiencia completa</span> con un
             examen cronometrado (mock exam), simula las condiciones reales del examen y prepárate para el éxito con
@@ -261,9 +279,9 @@
             manera <span class="fw-bold">única y efectiva</span>.
           </p>
         </div>
+        <!-- animate__animated animate__fadeInRight añade una animación de fadeIn desde la derecha -->
         <div class="col-md-6 image-container animate__animated animate__fadeInRight animate__delay-3s">
-          <!-- La clase 'animate__animated animate__fadeInRight' añade una animación de fadeIn desde la derecha al cargar -->
-          <img src="images/examenesIngles.jpeg" alt="Imagen de la academia" class="img-fluid h-75 mx-auto d-block">
+          <img src="images/examenesIngles.jpeg" alt="Imagen exámenes ingléss" class="img-fluid h-75 mx-auto d-block">
         </div>
       </div>
     </div>
@@ -276,7 +294,7 @@
   <!-- PARTE DE PRECIOS -->
   <div class="container card">
     </br>
-    <h1 class="display-6 text-center mb-4">Pricing</h1>
+    <h1 class="display-6 text-center mb-4">Precios</h1>
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
@@ -426,7 +444,7 @@
 
   <!-- PARTE DE RESEÑAS -->
   <h1 class="display-6 text-center mb-4">RESEÑAS</h1>
-  <div id="valoracionCarousel" class="carousel slide container m-5" data-ride="carousel" data-interval="false">
+  <div id="valoracionCarousel" class="carousel slide container" data-ride="carousel" data-interval="false">
     <div class="carousel-inner">
 
       <!-- RESEÑA 1 -->
