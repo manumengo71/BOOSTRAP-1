@@ -25,7 +25,7 @@
 <body>
     <!-- HEADER NAVBAR -->
     <?php
-    include 'php/cabecera.php';
+    include 'cabecera.php';
     ?>
 
     <div class="container" id="formularios">
@@ -58,11 +58,11 @@
                     <!-- Button -->
                     <div class="form-group">
                         <label class="col-xs-4 control-label" for="btnAceptarAltaStudent"></label>
-                        <div class="col-xs-4 d-inline">
-                            <input type="button" id="btnAceptarAltaStudent" name="btnAceptarAltaStudent" class="btn btn-primary mt-2" value="Aceptar" />
+                        <div class="col-xs-4">
+                            <input type="button" id="btnAceptarAltaStudent" name="btnAceptarAltaStudent" class="btn btn-primary" value="Aceptar" />
                         </div>
-                        <div class="col-xs-4 d-inline">
-                            <input type="button" class="btn btn-secondary mt-2" value="Cancelar" onclick="ocultarFormularios()" />
+                        <div class="col-xs-4">
+                            <input type="button" class="btn btn-secondary" value="Cancelar" onclick="ocultarFormularios()" />
                         </div>
                     </div>
                 </fieldset>
