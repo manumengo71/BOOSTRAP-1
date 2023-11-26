@@ -9,8 +9,8 @@ $sql = "UPDATE exams
 SET exam_subject = '" . $exam->tema . "',
 exam_date = '" . $exam->fecha . "',
 qualification = '" . $exam->calificacion . "',
-student_id = $exam->idstudent
-WHERE exam_id = $exam->idexam ";
+student_id = '" . $exam->idstudent . "'
+WHERE exam_id =  '$exam->idexam' ";
 
 mysqli_query($conexion, $sql);
 
