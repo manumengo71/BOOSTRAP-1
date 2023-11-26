@@ -68,7 +68,7 @@ async function peticionPOST(url, parametros){
        console.error("Error al acceder al acceder al servidor (STATUS != 200..299).Status: " + respuestaServidor.status);
        response = {
            error: true,
-           mensaje: "Error al acceder al acceder al servidor (STATUS != 200..299). Status: " + respuestaServidor.status,
+           mensaje: "Error al acceder al acceder al servidor (STATUS != 200..299).Status: " + respuestaServidor.status,
            datos: null
        };
    }

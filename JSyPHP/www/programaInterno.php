@@ -20,6 +20,7 @@
             margin-top: 60px;
         }
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -67,6 +68,114 @@
                     </div>
                 </fieldset>
             </form>
+            <form class="form-horizontal" name="frmAltaExamenes" id="frmAltaExam">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Alta de examenes</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtTema">Tema del examen</label>
+                        <div class="col-xs-4">
+                            <input id="txtTema" name="txtTema" placeholder="Nombre del tema del examen" class="form-control input-md" type="text">
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtFecha">Fecha del examen</label>
+                        <div class="col-xs-4">
+                            <input id="txtFecha" name="txtFecha" placeholder="Fecha del examen" class="form-control input-md" type="date">
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtCalificacion">Calificación</label>
+                        <div class="col-xs-4">
+                            <input id="txtCalificacion" name="txtCalificacion" placeholder="Calificación del examen" class="form-control input-md" type="number">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="lstStudent">Estudiante</label>
+                        <div class="col-xs-4">
+                            <select name="lstStudent" id="lstStudent">
+
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="btnAceptarAltaExam"></label>
+                        <div class="col-xs-4 d-inline">
+                            <input type="button" id="btnAceptarAltaExam" name="btnAceptarAltaExam" class="btn btn-primary mt-2" value="Aceptar" />
+                        </div>
+                        <div class="col-xs-4 d-inline">
+                            <input type="button" class="btn btn-secondary mt-2" value="Cancelar" onclick="ocultarFormularios()" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <form class="form-horizontal" name="frmBuscarStudent" id="frmBuscarStudent">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Buscar un estudiante</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtIdStudent">Id Estudiante</label>
+                        <div class="col-xs-4">
+                            <input id="txtIdStudent" name="txtIdStudent" placeholder="Id del estudiante" class="form-control input-md" type="text">
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="btnBuscarStudent"></label>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnBuscarStudent" name="btnBuscarStudent" class="btn btn-primary" value="Aceptar" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <form class="form-horizontal" name="frmModificarStudent" id="frmModificarStudent">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Modificar estudiante</legend>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtModIdStudent">Id estudiante</label>
+                        <div class="col-xs-4">
+                            <input disabled id="txtModIdStudent" name="txtModIdStudent" class="form-control input-md" type="text">
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtModNombreStudent">Nombre del estudiante</label>
+                        <div class="col-xs-4">
+                            <input id="txtModNombreStudent" name="txtModNombreStudent" class="form-control input-md" type="text">
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtModCumpleañosStudent">Fecha de cumpleaños</label>
+                        <div class="col-xs-4">
+                            <input id="txtModCumpleañosStudent" name="txtModCumpleañosStudent" placeholder="Cumpleaños del estudiante" class="form-control input-md" type="date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtModNumeroStudent">Numero de teléfono</label>
+                        <div class="col-xs-4">
+                            <input id="txtModNumeroStudent" name="txtModNumeroStudent" placeholder="Numero de teléfono del estudiante" class="form-control input-md" type="text" maxlength="9" pattern="\d{1,9}">
+                        </div>
+                    </div>
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="btnAceptarModStudent"></label>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnAceptarModStudent" name="btnAceptarModStudent" class="btn btn-primary" value="Aceptar" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <div id="resultadoBusqueda"></div>
         </div>
     </div>
 

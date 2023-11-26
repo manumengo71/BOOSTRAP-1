@@ -3,13 +3,13 @@ include_once("config.php");
 $conexion = obtenerConexion();
 
 // Recoger datos
-$nombre = $_POST['nombre'];
-$cumpleaños = $_POST['cumpleaños'];
-$numero = $_POST['numero'];
+$student = json_decode($_POST['student']);
 
-// $cumpleañosMY = DateTime::createFromFormat('d/m/Y', $cumpleaños)->format('Y-m-d');
-
-$sql = "INSERT INTO students VALUES (null,'$nombre','$cumpleaños','$numero');";
+$sql = "UPDATE students
+SET student_name = '" . $student->nombre . "', 
+student_birthdate = '" . $student->cumpleaños . "', 
+student_number = '" . $student->numero . "'
+WHERE student_id =  '$student->idStudent' ";
 
 mysqli_query($conexion, $sql);
 
@@ -18,9 +18,7 @@ if (mysqli_errno($conexion) != 0) {
     $descrerror = mysqli_error($conexion);
 
     responder(null, true, "Se ha producido un error número $numerror que corresponde a: $descrerror", $conexion);
-
 } else {
     // Prototipo responder($datos,$error,$mensaje,$conexion)
-    responder(null, false, "Se ha insertado el estudiante", $conexion);
+    responder(null, false, "Se ha modificado el estudiante", $conexion);
 }
-?>

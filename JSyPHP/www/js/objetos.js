@@ -44,4 +44,66 @@ class Student {
 
         return listado;
     }
+
+    async buscarStudent(idStudent) {
+        let datos = new FormData();
+
+        datos.append("idstudent", idStudent);
+
+        let respuesta = await peticionPOST("buscar_student.php", datos);
+
+        return respuesta;
+    }
+
+    async borrarStudent(idStudent) {
+        let datos = new FormData();
+
+        datos.append("idstudent", idStudent);
+
+        let respuesta = await peticionPOST("borrar_student.php", datos);
+
+        return respuesta;
+    }
+
+    async modificarStudent(oStudent) {
+        let datos = new FormData();
+
+        // Se podría pasar campo a campo al servidor
+        // pero en esta ocasión vamos a pasar todos los datos 
+        // en un solo parámetro cuyos datos van en formato JSON
+        datos.append("student", JSON.stringify(oStudent));
+
+        let respuesta = await peticionPOST("modificar_student.php", datos);
+
+        return respuesta;
+    }
+}
+
+class Exam {
+    constructor(id, subject, date, qualification, student_id) {
+        this.id = id;
+        this.subject = subject;
+        this.date = date;
+        this.qualification = qualification;
+        this.student_id = student_id;
+    }
+
+    async altaExam(oExams) {
+        let datos = new FormData();
+
+        datos.append("tema", oExams.subject);
+        datos.append("fecha", oExams.date);
+        datos.append("califiacion", oExams.qualification);
+        datos.append("idstudent", oExams.student_id);
+
+        let respuesta = await peticionPOST("alta_exam.php", datos);
+
+        return respuesta;
+    }
+
+    async get_idstudents() {
+        let datos = new FormData();
+        let respuesta = await peticionPOST("get_idstudents.php", datos);
+        return respuesta;
+    }
 }
