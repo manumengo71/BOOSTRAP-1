@@ -9,7 +9,7 @@ $sql = "UPDATE students
 SET student_name = '" . $student->nombre . "', 
 student_birthdate = '" . $student->cumpleaños . "', 
 student_number = '" . $student->numero . "'
-WHERE student_id =  '$student->idStudent' ";
+WHERE student_id = $student->idStudent ";
 
 mysqli_query($conexion, $sql);
 
