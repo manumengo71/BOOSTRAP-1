@@ -24,8 +24,7 @@ Link landPage --> http://boostrapmengo.infinityfreeapp.com
 Utiliza Docker para levantar las partes de JSyPHP y PHP:
   1. Clona este repositorio en tu máquina local.
   2. Accede a la carpeta que quieras levantar con docker (JSyPHP o PHP) desde la consola y ejecuta el comando ```docker compose up -d```.
-  3. Accede a http://localhost:8000 e importa la base de datos adjuntada en la carpeta database dentro de alguna de las carpetas de las partes del proyecto.
-    3.1. El usuario y contraseña de phpMyAdmin son: user --> root | password --> test
+  3. Accede a http://localhost:8000 e importa la base de datos adjuntada en la carpeta database dentro de alguna de las carpetas de las partes del proyecto. El usuario y contraseña de phpMyAdmin son: user --> root | password --> test
   4. Una vez importada, accede a http://localhost y ya podrás disfrutar de la pagina y sus funcionalidades.
 
 Parte de boostrap(landPage):
