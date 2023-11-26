@@ -106,4 +106,62 @@ class Exam {
         let respuesta = await peticionPOST("get_idstudents.php", datos);
         return respuesta;
     }
+
+    async listadoExams() {
+        let listado = "";
+
+        let respuesta = await peticionGET("listado_exams.php", new FormData());
+
+        if (respuesta.error) {
+            listado = respuesta.mensaje;
+        } else {
+            listado = "<table class='table table-striped'>";
+            listado += "<thead><tr><th>ID EXAMEN</th><th>TEMA</th><th>FECHA REALIZACION</th><th>ESTUDIANTE</th><th>CALIFICACION</th></tr></thead>";
+            listado += "<tbody>";
+
+            for (let exams of respuesta.datos) {
+                listado += "<tr><td>" + exams.exam_id + "</td>";
+                listado += "<td>" + exams.exam_subject + "</td>";
+                listado += "<td>" + exams.exam_date + "</td>";
+                listado += "<td>" + exams.student_name + "</td>";
+                listado += "<td>" + exams.qualification + "</td></tr>";
+            }
+            listado += "</tbody></table>";
+        }
+
+        return listado;
+    }
+
+    async buscarExam(idExam) {
+        let datos = new FormData();
+
+        datos.append("idexam", idExam);
+
+        let respuesta = await peticionPOST("buscar_exam.php", datos);
+
+        return respuesta;
+    }
+
+    async borrarExam(idExam) {
+        let datos = new FormData();
+
+        datos.append("idexam", idExam);
+
+        let respuesta = await peticionPOST("borrar_exam.php", datos);
+
+        return respuesta;
+    }
+
+    async modificarExam(oExam) {
+        let datos = new FormData();
+
+        // Se podría pasar campo a campo al servidor
+        // pero en esta ocasión vamos a pasar todos los datos 
+        // en un solo parámetro cuyos datos van en formato JSON
+        datos.append("exam", JSON.stringify(oExam));
+
+        let respuesta = await peticionPOST("modificar_exam.php", datos);
+
+        return respuesta;
+    }
 }

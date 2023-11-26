@@ -21,12 +21,19 @@ function registrarEventos() {
     document
         .querySelector("#txtNav5")
         .addEventListener("click", mostrarFormulario);
-
+    document
+        .querySelector("#txtNav6")
+        .addEventListener("click", mostrarListadoExams);
+    document
+        .querySelector("#txtNav1")
+        .addEventListener("click", mostrarFormulario);
     // Botones
     frmAltaStudent.btnAceptarAltaStudent.addEventListener("click", procesarAltaStudent);
     frmAltaExam.btnAceptarAltaExam.addEventListener("click", procesarAltaExam);
     frmBuscarStudent.btnBuscarStudent.addEventListener("click", procesarBuscarStudent);
     frmModificarStudent.btnAceptarModStudent.addEventListener("click", procesarModificarStudent);
+    frmBuscarExam.btnBuscarExam.addEventListener("click", procesarBuscarExam);
+    frmModificarExam.btnAceptarModExam.addEventListener("click", procesarModificarExam);
 }
 
 /** FIN REGISTRO DE EVENTOS */
@@ -49,11 +56,18 @@ function mostrarFormulario(oEvento) {
         case "txtNav5":
             frmBuscarStudent.style.display = "block";
             break;
+        case "txtNav1":
+            frmBuscarExam.style.display = "block";
+            break;
     }
 }
 
 function mostrarListadoStudents() {
     open("listado_students.html ");
+}
+
+function mostrarListadoExams() {
+    open("listado_examns.html ");
 }
 
 /** FIN MOSTRAR FORMULARIOS */
@@ -64,6 +78,8 @@ function ocultarFormularios() {
     frmAltaStudent.style.display = "none";
     frmAltaExam.style.display = "none";
     frmBuscarStudent.style.display = "none";
+    resultadoBusqueda.style.display = "none";
+    frmBuscarExam.style.display = "none";
 }
 
 /** FIN OCULTAR FORMULARIOS */
@@ -147,6 +163,7 @@ async function actualizarDesplegableIds(idStudentSeleccionado) {
     }
     // Agrego los options generados a partir del contenido de la BD
     frmAltaExam.lstStudent.innerHTML = options;
+    frmModificarExam.lstStudent.innerHTML = options;
     // Aprovecho y actualizo todos los desplegables se vea o no el formulario
 }
 
@@ -169,6 +186,52 @@ async function procesarAltaExam() {
             frmAltaExam.style.display = "none";
         }
 
+    }
+}
+
+async function procesarBuscarExam() {
+    if (validarBuscarExam()) {
+        let idExam = parseInt(frmBuscarExam.txtIdExam.value.trim());
+
+        let respuesta = await oExams.buscarExam(idExam);
+
+        if (!respuesta.error) { // Si NO hay error
+            let resultadoBusqueda = document.querySelector("#resultadoBusqueda");
+
+            let ExamInfo = {
+                exam_id: respuesta.datos.exam_id,
+                exam_subject: respuesta.datos.exam_subject,
+                exam_date: respuesta.datos.exam_date,
+                student_id: respuesta.datos.student_id,
+                qualification: respuesta.datos.qualification
+            };
+
+            // Escribimos resultado
+            let tablaSalida = "<table class = 'table'>";
+            tablaSalida += "<thead><tr><th>ID EXAMEN</th><th>TEMA</th><th>FECHA DE REALIZACION</th><th>ID ESTUDIANTE</th><th>CALIFICACIÓN</th></tr></thead>";
+            tablaSalida += "<tbody><tr>";
+            tablaSalida += "<td>" + respuesta.datos.exam_id + "</td>";
+            tablaSalida += "<td>" + respuesta.datos.exam_subject + "</td>";
+            tablaSalida += "<td>" + respuesta.datos.exam_date + "</td>";
+            tablaSalida += "<td>" + respuesta.datos.student_name + "</td>";
+            tablaSalida += "<td>" + respuesta.datos.qualification + "</td>";
+            tablaSalida += "<td><button type='button' class='btn btn-danger' id='btnBorrarExam' data-idexam='" + respuesta.datos.exam_id + "'>";
+            tablaSalida += "<i class='bi bi-trash3-fill'></i> Borrar</button></td>";
+            tablaSalida += "<td><button type='button' class='btn btn-primary' id='btnEditarExam' data-exam='" + JSON.stringify(ExamInfo) + "'>";
+            tablaSalida += "<i class='bi bi-pencil-square'></i> Editar</button></td>";
+            tablaSalida += "<tr></tbody></table>";
+
+            resultadoBusqueda.innerHTML = tablaSalida;
+            resultadoBusqueda.style.display = "block";
+
+            // Registrar evento para el botón de borrar
+            document.querySelector("#btnBorrarExam").addEventListener("click", borrarExam);
+            actualizarDesplegableIds();
+            document.querySelector("#btnEditarExam").addEventListener('click', procesarBotonEditarExam);
+
+        } else { // Si hay error
+            alert(respuesta.mensaje);
+        }
     }
 }
 
@@ -229,6 +292,64 @@ async function procesarModificarStudent() {
 
     }
 }
+
+async function borrarExam(oEvento) {
+    let boton = oEvento.target;
+    let idExam = boton.dataset.idexam;
+
+    let respuesta = await oExams.borrarExam(idExam);
+
+    alert(respuesta.mensaje);
+
+    if (!respuesta.error) { // Si NO hay error
+        // Borrado de la tabla html
+        document.querySelector("#resultadoBusqueda").innerHTML = "";
+    }
+
+}
+
+function procesarBotonEditarExam(oEvento) {
+    let boton = null;
+
+    boton = oEvento.target;
+
+    // 1.Ocultar todos los formularios
+    ocultarFormularios();
+    // 2.Mostrar el formulario de modificación de estudiantes
+    frmModificarExam.style.display = "block";
+    // 3. Rellenar los datos de este formulario con los del estudainte seleccionado
+    let exam = JSON.parse(boton.dataset.exam);
+
+    frmModificarExam.txtModIdExam.value = exam.exam_id;
+    frmModificarExam.txtModTemaExam.value = exam.exam_subject;
+    frmModificarExam.txtModFechaExam.value = exam.exam_date;
+    frmModificarExam.txtModCalificacionExam.value = exam.qualification;
+}
+
+async function procesarModificarExam() {
+    // Recuperar datos del formulario frmModificarComponente
+    let idExam = frmModificarStudent.txtModIdStudent.value.trim();
+    let tema = frmAltaExam.txtTema.value.trim();
+    let fecha = frmAltaExam.txtFecha.value.trim();
+    let calificacion = frmAltaExam.txtCalificacion.value.trim();
+    let idStudent = frmAltaExam.lstStudent.value;
+
+    // Validar datos del formulario
+    if (validarModExam()) {
+        let respuesta = await oExams.modificarExam(new Exam(idExam, tema, fecha, calificacion, idStudent));
+
+        alert(respuesta.mensaje);
+
+        if (!respuesta.error) { // Si NO hay error
+            //Resetear formulario
+            frmModificarExam.reset();
+            // Ocultar el formulario
+            frmModificarExam.style.display = "none";
+        }
+
+    }
+}
+
 
 /** FIN FUNCIONES */
 
@@ -312,24 +433,73 @@ function validarModStudent() {
 }
 
 function validarAltaExam() {
-    // Recuperar datos del formulario frmModificarComponente
     let tema = frmAltaExam.txtTema.value.trim();
     let fecha = frmAltaExam.txtFecha.value.trim();
-    let calificacion = parseInt(frmAltaExam.txtCalificacion.value.trim());
+    let calificacion = frmAltaExam.txtCalificacion.value.trim();
+    let idStudent = frmAltaExam.lstStudent.value;
+    let valido = true;
+    let errores = "";
+
+    if (tema.length == 0 || fecha.length == 0 || calificacion.length == 0) {
+        valido = false;
+        errores += "Faltan datos por rellenar";
+    }
+
+    if (calificacion < 0 || calificacion > 10) {
+        valido = false;
+        errores += "La calificación debe estar entre 0 y 10";
+    }
+
+    if (!valido) {
+        alert(errores);
+    }
+
+    return valido;
+}
+
+function validarBuscarExam() {
+    let idExam = parseInt(frmBuscarExam.txtIdExam.value.trim());
+    let valido = true;
+    let errores = "";
+
+    if (isNaN(idExam)) {
+        valido = false;
+        errores += "El identificador del examen debe ser numérico";
+    }
+
+    if (!valido) {
+        // Hay errores
+        alert(errores);
+    }
+
+    return valido;
+}
+
+function validarModExam() {
+    // Recuperar datos del formulario frmModificarComponente
+    let idExam = frmModificarStudent.txtModIdStudent.value.trim();
+    let tema = frmAltaExam.txtTema.value.trim();
+    let fecha = frmAltaExam.txtFecha.value.trim();
+    let calificacion = frmAltaExam.txtCalificacion.value.trim();
     let idStudent = frmAltaExam.lstStudent.value;
 
     let valido = true;
     let errores = "";
 
-    if (isNaN(calificacion)) {
+    if (isNaN(idExam)) {
         valido = false;
-        errores += "La calificacion debe ser numérico";
+        errores += "El identificador del examen no es correcto";
     }
 
-    if (tema.length == 0 || fecha.length == 0) {
+    if (calificacion < 0 || calificacion > 10) {
         valido = false;
-        errores += "El tema y la fecha no pueden estar vacíos";
+        errores += "La calificación debe estar entre 0 y 10";
     }
+
+    // if (tema.length == 0 || fecha.length == 0) {
+    //     valido = false;
+    //     errores += "El tema y la fecha no pueden estar vacíos";
+    // }
 
     if (!valido) {
         // Hay errores

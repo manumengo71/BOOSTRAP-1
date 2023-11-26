@@ -175,6 +175,77 @@
                     </div>
                 </fieldset>
             </form>
+            <form class="form-horizontal" name="frmModificarExam" id="frmModificarExam">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Modificar examen</legend>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtModIdExam">Id examen</label>
+                        <div class="col-xs-4">
+                            <input disabled id="txtModIdExam" name="txtModIdExam" class="form-control input-md" type="text">
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtModTemaExam">Tema del examen</label>
+                        <div class="col-xs-4">
+                            <input id="txtModTemaExam" name="txtModTemaExam" placeholder="Nombre del tema del examen" class="form-control input-md" type="text">
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtModFechaExam">Fecha del examen</label>
+                        <div class="col-xs-4">
+                            <input id="txtModFechaExam" name="txtModFechaExam" placeholder="Fecha del examen" class="form-control input-md" type="date">
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtModCalificacionExam">Calificación</label>
+                        <div class="col-xs-4">
+                            <input id="txtModCalificacionExam" name="txtModCalificacionExam" placeholder="Calificación del examen" class="form-control input-md" type="number">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="lstStudent">Estudiante</label>
+                        <div class="col-xs-4">
+                            <select name="lstStudent" id="lstStudent">
+
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="btnAceptarModExam"></label>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnAceptarModExam" name="btnAceptarModExam" class="btn btn-primary" value="Aceptar" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <form class="form-horizontal" name="frmBuscarExam" id="frmBuscarExam">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Buscar un examen</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtIdExam">Id examen</label>
+                        <div class="col-xs-4">
+                            <input id="txtIdExam" name="txtIdExam" placeholder="Id del examen" class="form-control input-md" type="text">
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="btnBuscarExam"></label>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnBuscarExam" name="btnBuscarExam" class="btn btn-primary" value="Aceptar" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
             <div id="resultadoBusqueda"></div>
         </div>
     </div>

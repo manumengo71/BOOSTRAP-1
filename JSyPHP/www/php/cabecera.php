@@ -26,7 +26,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Buscar un examen</a></li>
+                            <li><a class="dropdown-item" href="#" id="txtNav1">Buscar un examen</a></li>
                             <li><a class="dropdown-item" href="#" id="txtNav6">Listar examenes</a></li>
                         </ul>
                     </li>
