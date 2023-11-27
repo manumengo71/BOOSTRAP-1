@@ -31,8 +31,11 @@ function registrarEventos() {
     frmAltaStudent.btnAceptarAltaStudent.addEventListener("click", procesarAltaStudent);
     frmAltaExam.btnAceptarAltaExam.addEventListener("click", procesarAltaExam);
     frmBuscarStudent.btnBuscarStudent.addEventListener("click", procesarBuscarStudent);
+    frmBuscarStudent2.btnBuscarStudent2.addEventListener("click", procesarBuscarStudent);
     frmModificarStudent.btnAceptarModStudent.addEventListener("click", procesarModificarStudent);
     frmBuscarExam.btnBuscarExam.addEventListener("click", procesarBuscarExam);
+    frmBuscarExam2.btnBuscarExam2.addEventListener("click", procesarBuscarExam);
+
     frmModificarExam.btnAceptarModExam.addEventListener("click", procesarModificarExam);
 }
 
@@ -55,9 +58,11 @@ function mostrarFormulario(oEvento) {
             break;
         case "txtNav5":
             frmBuscarStudent.style.display = "block";
+            frmBuscarStudent2.style.display = "block";
             break;
         case "txtNav1":
             frmBuscarExam.style.display = "block";
+            frmBuscarExam2.style.display = "block";
             break;
     }
 }
@@ -78,8 +83,12 @@ function ocultarFormularios() {
     frmAltaStudent.style.display = "none";
     frmAltaExam.style.display = "none";
     frmBuscarStudent.style.display = "none";
+    frmBuscarStudent2.style.display = "none";
     resultadoBusqueda.style.display = "none";
     frmBuscarExam.style.display = "none";
+    frmModificarStudent.style.display = "none";
+    frmModificarExam.style.display = "none";
+    frmBuscarExam2.style.display = "none";
 }
 
 /** FIN OCULTAR FORMULARIOS */
@@ -106,45 +115,49 @@ async function procesarAltaStudent() {
 }
 
 async function procesarBuscarStudent() {
-    if (validarBuscarStudent()) {
-        let idStudent = parseInt(frmBuscarStudent.txtIdStudent.value.trim());
+    let idStudent = parseInt(frmBuscarStudent.txtIdStudent.value.trim());
+    let nombreStudent = frmBuscarStudent2.txtNombreStudent.value.trim();
+    let respuesta;
 
-        let respuesta = await oStudent.buscarStudent(idStudent);
+    if (validarBuscarStudent() == idStudent) {
+        respuesta = await oStudent.buscarStudent(idStudent);
+    } else if (validarBuscarStudent() == nombreStudent) {
+        respuesta = await oStudent.buscarStudent2(nombreStudent);
+    }
 
-        if (!respuesta.error) { // Si NO hay error
-            let resultadoBusqueda = document.querySelector("#resultadoBusqueda");
+    if (!respuesta.error) { // Si NO hay error
+        let resultadoBusqueda = document.querySelector("#resultadoBusqueda");
 
-            let studentInfo = {
-                student_id: respuesta.datos.student_id,
-                student_name: respuesta.datos.student_name,
-                student_birthdate: respuesta.datos.student_birthdate,
-                student_number: respuesta.datos.student_number
-            };
+        let studentInfo = {
+            student_id: respuesta.datos.student_id,
+            student_name: respuesta.datos.student_name,
+            student_birthdate: respuesta.datos.student_birthdate,
+            student_number: respuesta.datos.student_number
+        };
 
-            // Escribimos resultado
-            let tablaSalida = "<table class = 'table'>";
-            tablaSalida += "<thead><tr><th>IDESTUDIANTE</th><th>NOMBRE</th><th>CUMPLEAÑOS</th><th>NUMERO</th></tr></thead>";
-            tablaSalida += "<tbody><tr>";
-            tablaSalida += "<td>" + respuesta.datos.student_id + "</td>";
-            tablaSalida += "<td>" + respuesta.datos.student_name + "</td>";
-            tablaSalida += "<td>" + respuesta.datos.student_birthdate + "</td>";
-            tablaSalida += "<td>" + respuesta.datos.student_number + "</td>";
-            tablaSalida += "<td><button type='button' class='btn btn-danger' id='btnBorrarStudent' data-idstudent='" + respuesta.datos.student_id + "'>";
-            tablaSalida += "<i class='bi bi-trash3-fill'></i> Borrar</button></td>";
-            tablaSalida += "<td><button type='button' class='btn btn-primary' id='btnEditarStudent' data-student='" + JSON.stringify(studentInfo) + "'>";
-            tablaSalida += "<i class='bi bi-pencil-square'></i> Editar</button></td>";
-            tablaSalida += "<tr></tbody></table>";
+        // Escribimos resultado
+        let tablaSalida = "<table class = 'table'>";
+        tablaSalida += "<thead><tr><th>IDESTUDIANTE</th><th>NOMBRE</th><th>CUMPLEAÑOS</th><th>NUMERO</th></tr></thead>";
+        tablaSalida += "<tbody><tr>";
+        tablaSalida += "<td>" + respuesta.datos.student_id + "</td>";
+        tablaSalida += "<td>" + respuesta.datos.student_name + "</td>";
+        tablaSalida += "<td>" + respuesta.datos.student_birthdate + "</td>";
+        tablaSalida += "<td>" + respuesta.datos.student_number + "</td>";
+        tablaSalida += "<td><button type='button' class='btn btn-danger' id='btnBorrarStudent' data-idstudent='" + respuesta.datos.student_id + "'>";
+        tablaSalida += "<i class='bi bi-trash3-fill'></i> Borrar</button></td>";
+        tablaSalida += "<td><button type='button' class='btn btn-primary' id='btnEditarStudent' data-student='" + JSON.stringify(studentInfo) + "'>";
+        tablaSalida += "<i class='bi bi-pencil-square'></i> Editar</button></td>";
+        tablaSalida += "<tr></tbody></table>";
 
-            resultadoBusqueda.innerHTML = tablaSalida;
-            resultadoBusqueda.style.display = "block";
+        resultadoBusqueda.innerHTML = tablaSalida;
+        resultadoBusqueda.style.display = "block";
 
-            // Registrar evento para el botón de borrar
-            document.querySelector("#btnBorrarStudent").addEventListener("click", borrarStudent);
-            document.querySelector("#btnEditarStudent").addEventListener('click', procesarBotonEditarStudent);
+        // Registrar evento para el botón de borrar
+        document.querySelector("#btnBorrarStudent").addEventListener("click", borrarStudent);
+        document.querySelector("#btnEditarStudent").addEventListener('click', procesarBotonEditarStudent);
 
-        } else { // Si hay error
-            alert(respuesta.mensaje);
-        }
+    } else { // Si hay error
+        alert(respuesta.mensaje);
     }
 }
 
@@ -192,30 +205,36 @@ async function procesarAltaExam() {
 async function procesarBuscarExam() {
     if (validarBuscarExam()) {
         let idExam = parseInt(frmBuscarExam.txtIdExam.value.trim());
+        let temaExamen = frmBuscarExam2.txtTemaExam.value.trim();
+        let respuestaExam;
 
-        let respuesta = await oExams.buscarExam(idExam);
+        if (validarBuscarExam() == idExam) {
+            respuestaExam = await oExams.buscarExam(idExam);
+        } else if (validarBuscarExam() == temaExamen) {
+            respuestaExam = await oExams.buscarExam2(temaExamen);
+        }
 
-        if (!respuesta.error) { // Si NO hay error
+        if (!respuestaExam.error) { // Si NO hay error
             let resultadoBusqueda = document.querySelector("#resultadoBusqueda");
 
             let ExamInfo = {
-                exam_id: respuesta.datos.exam_id,
-                exam_subject: respuesta.datos.exam_subject,
-                exam_date: respuesta.datos.exam_date,
-                student_id: respuesta.datos.student_id,
-                qualification: respuesta.datos.qualification
+                exam_id: respuestaExam.datos.exam_id,
+                exam_subject: respuestaExam.datos.exam_subject,
+                exam_date: respuestaExam.datos.exam_date,
+                student_id: respuestaExam.datos.student_id,
+                qualification: respuestaExam.datos.qualification
             };
 
             // Escribimos resultado
             let tablaSalida = "<table class = 'table'>";
-            tablaSalida += "<thead><tr><th>ID EXAMEN</th><th>TEMA</th><th>FECHA DE REALIZACION</th><th>ID ESTUDIANTE</th><th>CALIFICACIÓN</th></tr></thead>";
+            tablaSalida += "<thead><tr><th>ID EXAMEN</th><th>TEMA</th><th>FECHA DE REALIZACION</th><th>NOMBRE DEL ESTUDIANTE</th><th>CALIFICACIÓN</th></tr></thead>";
             tablaSalida += "<tbody><tr>";
-            tablaSalida += "<td>" + respuesta.datos.exam_id + "</td>";
-            tablaSalida += "<td>" + respuesta.datos.exam_subject + "</td>";
-            tablaSalida += "<td>" + respuesta.datos.exam_date + "</td>";
-            tablaSalida += "<td>" + respuesta.datos.student_name + "</td>";
-            tablaSalida += "<td>" + respuesta.datos.qualification + "</td>";
-            tablaSalida += "<td><button type='button' class='btn btn-danger' id='btnBorrarExam' data-idexam='" + respuesta.datos.exam_id + "'>";
+            tablaSalida += "<td>" + respuestaExam.datos.exam_id + "</td>";
+            tablaSalida += "<td>" + respuestaExam.datos.exam_subject + "</td>";
+            tablaSalida += "<td>" + respuestaExam.datos.exam_date + "</td>";
+            tablaSalida += "<td>" + respuestaExam.datos.student_name + "</td>";
+            tablaSalida += "<td>" + respuestaExam.datos.qualification + "</td>";
+            tablaSalida += "<td><button type='button' class='btn btn-danger' id='btnBorrarExam' data-idexam='" + respuestaExam.datos.exam_id + "'>";
             tablaSalida += "<i class='bi bi-trash3-fill'></i> Borrar</button></td>";
             tablaSalida += "<td><button type='button' class='btn btn-primary' id='btnEditarExam' data-exam='" + JSON.stringify(ExamInfo) + "'>";
             tablaSalida += "<i class='bi bi-pencil-square'></i> Editar</button></td>";
@@ -272,7 +291,7 @@ function procesarBotonEditarStudent(oEvento) {
 
 async function procesarModificarStudent() {
     // Recuperar datos del formulario frmModificarComponente
-    let idStudent = frmModificarStudent.txtModIdStudent.value.trim();
+    let idStudent = parseInt(frmModificarStudent.txtModIdStudent.value.trim());
     let nombre = frmModificarStudent.txtModNombreStudent.value.trim();
     let cumpleaños = frmModificarStudent.txtModCumpleañosStudent.value.trim();
     let numero = frmModificarStudent.txtModNumeroStudent.value.trim();
@@ -328,11 +347,11 @@ function procesarBotonEditarExam(oEvento) {
 
 async function procesarModificarExam() {
     // Recuperar datos del formulario frmModificarComponente
-    let idExam = frmModificarStudent.txtModIdStudent.value.trim();
-    let tema = frmAltaExam.txtTema.value.trim();
-    let fecha = frmAltaExam.txtFecha.value.trim();
-    let calificacion = frmAltaExam.txtCalificacion.value.trim();
-    let idStudent = frmAltaExam.lstStudent.value;
+    let idExam = parseInt(frmModificarExam.txtModIdExam.value.trim());
+    let tema = frmModificarExam.txtModTemaExam.value.trim();
+    let fecha = frmModificarExam.txtModFechaExam.value.trim();
+    let calificacion = frmModificarExam.txtModCalificacionExam.value.trim();
+    let idStudent = parseInt(frmModificarExam.lstStudent.value);
 
     // Validar datos del formulario
     if (validarModExam()) {
@@ -378,12 +397,23 @@ function validarAltaStudent() {
 
 function validarBuscarStudent() {
     let idStudent = parseInt(frmBuscarStudent.txtIdStudent.value.trim());
+    let nombreStudent = frmBuscarStudent2.txtNombreStudent.value.trim();
     let valido = true;
     let errores = "";
+    let variable;
 
-    if (isNaN(idStudent)) {
+    if (isNaN(idStudent) && nombreStudent.length == 0) {
         valido = false;
-        errores += "El identificador del estudiante debe ser numérico";
+        errores += "No se ha pasado ningun parámetro";
+    } else if (!isNaN(idStudent) && nombreStudent.length != 0) {
+        valido = false;
+        errores += "No se puede pasar los dos parámetros";
+    } else if (isNaN(idStudent) && nombreStudent.length != 0) {
+        valido = true;
+        variable = nombreStudent;
+    } else if (!isNaN(idStudent) && nombreStudent.length == 0) {
+        valido = true;
+        variable = idStudent;
     }
 
     if (!valido) {
@@ -391,7 +421,7 @@ function validarBuscarStudent() {
         alert(errores);
     }
 
-    return valido;
+    return variable;
 }
 
 function validarModStudent() {
@@ -459,12 +489,23 @@ function validarAltaExam() {
 
 function validarBuscarExam() {
     let idExam = parseInt(frmBuscarExam.txtIdExam.value.trim());
+    let temaExamen = frmBuscarExam2.txtTemaExam.value.trim();
     let valido = true;
     let errores = "";
+    let variable;
 
-    if (isNaN(idExam)) {
+    if (isNaN(idExam) && temaExamen.length == 0) {
         valido = false;
-        errores += "El identificador del examen debe ser numérico";
+        errores += "No se ha pasado ningun parámetro";
+    } else if (!isNaN(idExam) && temaExamen.length != 0) {
+        valido = false;
+        errores += "No se puede pasar los dos parámetros";
+    } else if (isNaN(idExam) && temaExamen.length != 0) {
+        valido = true;
+        variable = temaExamen;
+    } else if (!isNaN(idExam) && temaExamen.length == 0) {
+        valido = true;
+        variable = idExam;
     }
 
     if (!valido) {
@@ -472,7 +513,7 @@ function validarBuscarExam() {
         alert(errores);
     }
 
-    return valido;
+    return variable;
 }
 
 function validarModExam() {

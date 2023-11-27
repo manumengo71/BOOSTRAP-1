@@ -116,7 +116,7 @@
             <form class="form-horizontal" name="frmBuscarStudent" id="frmBuscarStudent">
                 <fieldset>
                     <!-- Form Name -->
-                    <legend>Buscar un estudiante</legend>
+                    <legend>Buscar un estudiante por ID</legend>
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-xs-4 control-label" for="txtIdStudent">Id Estudiante</label>
@@ -130,6 +130,27 @@
                         <label class="col-xs-4 control-label" for="btnBuscarStudent"></label>
                         <div class="col-xs-4">
                             <input type="button" id="btnBuscarStudent" name="btnBuscarStudent" class="btn btn-primary" value="Aceptar" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <form class="form-horizontal" name="frmBuscarStudent2" id="frmBuscarStudent2">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Buscar un estudiante por NOMBRE</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtIdStudent">Nombre del Estudiante</label>
+                        <div class="col-xs-4">
+                            <input id="txtNombreStudent" name="txtNombreStudent" placeholder="Nombre del estudiante" class="form-control input-md" type="text">
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="btnBuscarStudent2"></label>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnBuscarStudent2" name="btnBuscarStudent2" class="btn btn-primary" value="Aceptar" />
                         </div>
                     </div>
                 </fieldset>
@@ -228,10 +249,10 @@
             <form class="form-horizontal" name="frmBuscarExam" id="frmBuscarExam">
                 <fieldset>
                     <!-- Form Name -->
-                    <legend>Buscar un examen</legend>
+                    <legend>Buscar un examen por ID</legend>
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-xs-4 control-label" for="txtIdExam">Id examen</label>
+                        <label class="col-xs-4 control-label" for="txtIdExam">Id del examen</label>
                         <div class="col-xs-4">
                             <input id="txtIdExam" name="txtIdExam" placeholder="Id del examen" class="form-control input-md" type="text">
                         </div>
@@ -242,6 +263,27 @@
                         <label class="col-xs-4 control-label" for="btnBuscarExam"></label>
                         <div class="col-xs-4">
                             <input type="button" id="btnBuscarExam" name="btnBuscarExam" class="btn btn-primary" value="Aceptar" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <form class="form-horizontal" name="frmBuscarExam2" id="frmBuscarExam2">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Buscar un examen por TEMA</legend>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="txtTemaExam">Tema del examen</label>
+                        <div class="col-xs-4">
+                            <input id="txtTemaExam" name="txtTemaExam" placeholder="Tema del examen" class="form-control input-md" type="text">
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="btnBuscarExam2"></label>
+                        <div class="col-xs-4">
+                            <input type="button" id="btnBuscarExam2" name="btnBuscarExam2" class="btn btn-primary" value="Aceptar" />
                         </div>
                     </div>
                 </fieldset>

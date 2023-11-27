@@ -55,6 +55,16 @@ class Student {
         return respuesta;
     }
 
+    async buscarStudent2(nombreStudent) {
+        let datos = new FormData();
+
+        datos.append("nombrestudent", nombreStudent);
+
+        let respuesta = await peticionPOST("buscar_student2.php", datos);
+
+        return respuesta;
+    }
+
     async borrarStudent(idStudent) {
         let datos = new FormData();
 
@@ -138,6 +148,16 @@ class Exam {
         datos.append("idexam", idExam);
 
         let respuesta = await peticionPOST("buscar_exam.php", datos);
+
+        return respuesta;
+    }
+
+    async buscarExam2(temaExamen) {
+        let datos = new FormData();
+
+        datos.append("temaexamen", temaExamen);
+
+        let respuesta = await peticionPOST("buscar_exam2.php", datos);
 
         return respuesta;
     }

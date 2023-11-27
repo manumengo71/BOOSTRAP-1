@@ -6,10 +6,10 @@ $conexion = obtenerConexion();
 $student = json_decode($_POST['student']);
 
 $sql = "UPDATE students
-SET student_name = '" . $student->nombre . "', 
-student_birthdate = '" . $student->cumpleaños . "', 
-student_number = '" . $student->numero . "'
-WHERE student_id = $student->idStudent ";
+SET student_name = '$student->name', 
+student_birthdate = '$student->birthdate', 
+student_number = '$student->number'
+WHERE student_id = $student->id;";
 
 mysqli_query($conexion, $sql);
 

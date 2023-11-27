@@ -3,14 +3,14 @@ include_once("config.php");
 $conexion = obtenerConexion();
 
 // Recoger datos
-$student = json_decode($_POST['exam']);
+$exam = json_decode($_POST['exam']);
 
 $sql = "UPDATE exams 
-SET exam_subject = '" . $exam->tema . "',
-exam_date = '" . $exam->fecha . "',
-qualification = '" . $exam->calificacion . "',
-student_id = '" . $exam->idstudent . "'
-WHERE exam_id =  '$exam->idexam' ";
+SET exam_subject = '$exam->subject',
+exam_date = '$exam->date',
+qualification = '$exam->qualification',
+student_id = $exam->student_id
+WHERE exam_id = $exam->id";
 
 mysqli_query($conexion, $sql);
 
