@@ -19,6 +19,7 @@ La carpeta images almacena las imágenes y recursos visuales utilizados en la do
 
 ## 6. Despliegue a la Web
 Link landPage --> http://boostrapmengo.infinityfreeapp.com
+Link parte JS --> http://jsmengo.infinityfreeapp.com
 
 ## Instrucciones de Uso
 Utiliza Docker para levantar las partes de JSyPHP y PHP:
